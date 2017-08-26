@@ -11,8 +11,12 @@ const App = () =>
         <h2>Welcome to React</h2>
       </div>
       <p>liquid-fill-gauge</p>
-      <LiquidFillGauge />
+      <LiquidFillGauge
+        value={55}
+        elementId={'1'}
+      />
     </div>
-  );
+  )
+;
 
 export default App;

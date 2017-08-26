@@ -4,6 +4,7 @@
     "browser": true,
     "jest": true
   },
+  "parser": "babel-eslint",
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -18,6 +19,7 @@
       "warn"
     ],
     "no-unused-vars":"warn",
-    "max-len": "warn"
+    "max-len": "warn",
+    "no-mixed-operators": "off"
   }
 }

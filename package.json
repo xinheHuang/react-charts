@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3-ease": "^1.0.3",
+    "d3-interpolate": "^1.1.5",
+    "d3-scale": "^1.0.6",
+    "d3-selection": "^1.1.0",
+    "d3-shape": "^1.2.0",
+    "d3-transition": "^1.1.0",
+    "prop-types": "latest",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.11"
@@ -11,13 +18,19 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "node_modules/.bin/eslint --ext=js --ext=jsx ."
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.3",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.3.0"
-  }
+    "eslint-plugin-react": "^7.3.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "eslint"
+  ]
 }
