@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LiquidFillGauge from './componenets/liquid-fill-gauge';
+import LiquidFillGaugeDemo from './demo/liquid-fill-gauge-demo';
 
 const App = () =>
   (
@@ -10,11 +10,7 @@ const App = () =>
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Welcome to React</h2>
       </div>
-      <p>liquid-fill-gauge</p>
-      <LiquidFillGauge
-        value={55}
-        elementId={'1'}
-      />
+      <LiquidFillGaugeDemo />
     </div>
   )
 ;
