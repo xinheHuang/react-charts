@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import LiquidFillGaugeDemo from './demo/liquid-fill-gauge-demo';
+import AxisDemo from './demo/basic/axis-demo';
 
 const App = () =>
   (
@@ -11,6 +12,7 @@ const App = () =>
         <h2>Welcome to React</h2>
       </div>
       <LiquidFillGaugeDemo />
+      <AxisDemo />
     </div>
   )
 ;

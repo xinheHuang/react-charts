@@ -41,7 +41,6 @@ class LiquidFillGauge extends React.Component {
     }
 
     if (this.props.value !== nextProps.value) {
-      console.log('newValue', nextProps.value);
       this.updateValue(nextProps.value);
     }
   }
@@ -106,7 +105,6 @@ class LiquidFillGauge extends React.Component {
     const textPixels = (textSize * radius / 2);
     const textFinalValue = parseFloat(value)
       .toFixed(2);
-    console.log('textFinalValue', textFinalValue);
     const textStartValue = valueCountUp ? minValue : textFinalValue;
     const percentText = displayPercent ? '%' : '';
     const circleThickness = circleThicknessRatio * radius;
@@ -184,7 +182,6 @@ class LiquidFillGauge extends React.Component {
       .attr('transform', `translate(${radius},${radius})`);
 
     // Text where the wave does not overlap.
-    console.log('text1', textRounder(textStartValue) + percentText);
     const text1 = gaugeGroup.append('text')
       .text(textRounder(textStartValue) + percentText)
       .attr('class', 'liquidFillGaugeText')
@@ -216,7 +213,6 @@ class LiquidFillGauge extends React.Component {
       .style('fill', waveColor);
 
     // Text where the wave does overlap.
-    console.log('text2', textRounder(textStartValue) + percentText);
     const text2 = fillCircleGroup.append('text')
       .text(textRounder(textStartValue) + percentText)
       .attr('class', 'liquidFillGaugeText')
@@ -228,7 +224,6 @@ class LiquidFillGauge extends React.Component {
     // Make the value count up.
     if (valueCountUp) {
       const textTween = function () {
-        console.log(this.textContent);
         const i = d3.interpolate(this.textContent, textFinalValue);
         return (t) => {
           this.textContent = textRounder(i(t)) + percentText;
@@ -260,7 +255,6 @@ class LiquidFillGauge extends React.Component {
     }
 
     function animateWave() {
-      console.log('animate Wave ', waveAnimateTime * (1 - wave.attr('T')));
       wave.attr('transform', `translate(${waveAnimateScale(wave.attr('T'))},0)`);
       wave.transition()
         .duration(waveAnimateTime * (1 - wave.attr('T')))
@@ -269,7 +263,6 @@ class LiquidFillGauge extends React.Component {
         .attr('T', 1)
         .on('end', () => {
           wave.attr('T', 0);
-          console.log('end');
           animateWave(waveAnimateTime);
         });
     }
