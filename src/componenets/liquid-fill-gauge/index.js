@@ -34,15 +34,7 @@ const defaultConfig = {
 
 
 class LiquidFillGauge extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    // if (nextProps.width !== this.props.width || nextProps.height !== this.props.height) {
-    //   this.setState({
-    //     width: nextProps.width,
-    //     heigth: nextProps.height,
-    //   });
-    //   return;
-    // }
-
+  componentWillUpdate(nextProps, nextState) {
     if (JSON.stringify(this.props.config) !== JSON.stringify(nextProps.config)) {
       this.createGauge(nextProps);
       return;
@@ -55,7 +47,9 @@ class LiquidFillGauge extends React.Component {
   }
 
   onRef = (ref) => {
-    this.setState({ svg: d3.select(ref) }, () => this.createGauge(this.props));
+    this.svg = d3.select((ref));
+    this.createGauge(this.props);
+    // this.setState({ svg: d3.select(ref) }, () => this.createGauge(this.props));
   }
 
 
@@ -91,7 +85,7 @@ class LiquidFillGauge extends React.Component {
       textSize,
     } = { ...defaultConfig, ...config };
 
-    const gauge = this.state.svg;
+    const gauge = this.svg;
     gauge.html('');
     const radius = Math.min(width, height) / 2;
     const locationX = width / 2 - radius;
@@ -355,7 +349,11 @@ class LiquidFillGauge extends React.Component {
 
   render() {
     return (
-      <svg width={this.props.width} height={this.props.height} ref={this.onRef} />
+      <svg
+        width={this.props.width}
+        height={this.props.height}
+        ref={this.onRef}
+      />
     );
   }
 }
@@ -378,54 +376,3 @@ LiquidFillGauge.defaultProps = {
 };
 
 export default LiquidFillGauge;
-
-
-/**
- export class App extends React.Component {
-    state = {
-        g: null,
-    }
-
-    onRef = (ref) => {
-        this.setState({ g: d3.select(ref) }, () => this.renderBubbles(this.props.data))
-    }
-
-    renderBubbles(data) {
-        const bubbles = this.state.g.selectAll('.bubble').data(data, d => d.id)
-
-        // Exit
-        bubbles.exit().remove()
-
-        // Enter
-        const bubblesE = bubbles.enter().append('circle')
-            .classed('bubble', true)
-            .attr('r', 0)
-            .attr('cx', d => d.x)
-            .attr('cy', d => d.y)
-
-        // Update
-        // ...
-
-        // can use animations like this now
-        bubblesE.transition().duration(2000).attr('r', d => d.radius)
-    }
-
-    componentWillReceiveProps(nextProps) {
-        // we have to handle the DOM ourselves now
-        if (nextProps.data !== this.props.data) {
-            this.renderBubbles(nextProps.data)
-        }
-    }
-
-    shouldComponentUpdate() { return false }
-
-    render() {
-        const { width, height } = this.props
-        return (
-            <svg width={width} height={height}>
-                <g ref={this.onRef} className="bubbles" />
-            </svg>
-        )
-    }
-}
- * */
