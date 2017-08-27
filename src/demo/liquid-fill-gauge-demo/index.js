@@ -8,7 +8,7 @@ class LiquidFillGaugeDemo extends React.Component {
 
   componentDidMount() {
     this.interValId = setInterval(() => {
-      this.setState({ value: Math.random() * 100, color: Math.random() > 0.5 ? 'red' : 'blue' });
+      this.setState({ value: Math.random() * 100 });
     }, 5000);
   }
 
@@ -32,7 +32,7 @@ class LiquidFillGaugeDemo extends React.Component {
           elementId={'2'}
           config={{
             circleColor: '#FF7777',
-            textColor: this.state.color,
+            textColor: '#FF4444',
             waveTextColor: '#FFAAAA',
             waveColor: '#FFDDDD',
             circleThicknessRatio: 0.2,
